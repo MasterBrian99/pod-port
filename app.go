@@ -8,21 +8,6 @@ import (
 	"github.com/docker/docker/client"
 )
 
-type Controller struct {
-	cli *client.Client
-}
-
-func NewController() (c *Controller, err error) {
-	c = new(Controller)
-
-	c.cli, err = client.NewClientWithOpts(client.FromEnv)
-
-	if err != nil {
-		return nil, err
-	}
-	return c, nil
-}
-
 // App struct
 type App struct {
 	ctx context.Context
@@ -47,8 +32,8 @@ func (a *App) Greet(name string) string {
 
 // EnsureImage
 func NewImageTest() string {
-	c, err := NewController()
-	containers, err := c.cli.ContainerList(context.Background(), types.ContainerListOptions{})
+
+	containers, err := dockerClient.cli.ContainerList(context.Background(), types.ContainerListOptions{})
 	if err != nil {
 		panic(err)
 	}
@@ -63,4 +48,10 @@ func (a *App) NewTestAA(name string) string {
 	NewImageTest()
 	getData()
 	return "he"
+}
+
+func (a *App) NiceOne() string {
+	dockerClient = new(Controller)
+	dockerClient.cli, _ = client.NewClientWithOpts(client.FromEnv)
+	return ""
 }

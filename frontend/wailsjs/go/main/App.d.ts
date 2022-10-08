@@ -4,3 +4,5 @@
 export function Greet(arg1:string):Promise<string>;
 
 export function NewTestAA(arg1:string):Promise<string>;
+
+export function NiceOne():Promise<string>;

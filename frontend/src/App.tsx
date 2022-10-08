@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import './App.css'
-import { Greet,NewTestAA } from '../wailsjs/go/main/App'
+import { Greet,NewTestAA, NiceOne } from '../wailsjs/go/main/App'
 import { MantineProvider, Text } from '@mantine/core'
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen/HomeScreen'
 import MainScreen from './screens/MainScreen/MainScreen'
+import MainLayout from './layout/MainLayout/MainLayout'
 
 function App() {
   const [resultText, setResultText] = useState(
@@ -16,11 +17,14 @@ function App() {
 
   function greet() {
     console.log('Calling');
+      NiceOne().then(res=>{
+        NewTestAA("").then(res=>{
+          console.log(res);
+          
+        })
+      })
     
-    NewTestAA("").then(res=>{
-      console.log(res);
-      
-    })
+   
     Greet(name).then(updateResultText)
   }
   greet()
@@ -37,10 +41,16 @@ export default App
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainScreen />,
-  },
-  {
-    path: 'home',
-    element: <HomeScreen />,
+    element: <MainLayout />,
+    children:[
+      {
+        path: '',
+        element: <HomeScreen />,
+      },
+      {
+        path: 'game',
+        element: <MainScreen />,
+      },
+    ]
   },
 ])
