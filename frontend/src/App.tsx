@@ -3,9 +3,10 @@ import './App.css'
 import { Greet,NewTestAA, NiceOne } from '../wailsjs/go/main/App'
 import { MantineProvider, Text } from '@mantine/core'
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
-import HomeScreen from './screens/HomeScreen/HomeScreen'
+import DashboardScreen from './screens/HomeScreen/DashboardScreen'
 import MainScreen from './screens/MainScreen/MainScreen'
 import MainLayout from './layout/MainLayout/MainLayout'
+import LoginScreen from './screens/LoginScreen/LoginScreen'
 
 function App() {
   const [resultText, setResultText] = useState(
@@ -41,11 +42,15 @@ export default App
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <MainLayout />,
+    element: <LoginScreen />,
+  },
+  {
+    path: '/',
+    element: <MainLayout/>,
     children:[
       {
-        path: '',
-        element: <HomeScreen />,
+        path: 'dashboard',
+        element: <DashboardScreen />,
       },
       {
         path: 'game',
