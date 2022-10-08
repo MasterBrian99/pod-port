@@ -1,6 +1,6 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
-import { Greet } from '../wailsjs/go/main/App'
+import { Greet,NewTestAA } from '../wailsjs/go/main/App'
 import { MantineProvider, Text } from '@mantine/core'
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen/HomeScreen'
@@ -15,8 +15,15 @@ function App() {
   const updateResultText = (result: string) => setResultText(result)
 
   function greet() {
+    console.log('Calling');
+    
+    NewTestAA("").then(res=>{
+      console.log(res);
+      
+    })
     Greet(name).then(updateResultText)
   }
+  greet()
 
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS>
