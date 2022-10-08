@@ -1,12 +1,7 @@
 import { useEffect, useState } from 'react'
-import './App.css'
-import { Greet,NewTestAA, NiceOne } from '../wailsjs/go/main/App'
-import { MantineProvider, Text } from '@mantine/core'
+import { Greet, NewTestAA, NiceOne } from '../wailsjs/go/main/App'
 import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
-import DashboardScreen from './screens/HomeScreen/DashboardScreen'
-import MainScreen from './screens/MainScreen/MainScreen'
-import MainLayout from './layout/MainLayout/MainLayout'
-import LoginScreen from './screens/LoginScreen/LoginScreen'
+import DashboardScreen from './screens/DashboardScreen/DashboardScreen'
 
 function App() {
   const [resultText, setResultText] = useState(
@@ -17,24 +12,18 @@ function App() {
   const updateResultText = (result: string) => setResultText(result)
 
   function greet() {
-    console.log('Calling');
-      NiceOne().then(res=>{
-        NewTestAA("").then(res=>{
-          console.log(res);
-          
-        })
+    console.log('Calling')
+    NiceOne().then((res) => {
+      NewTestAA('').then((res) => {
+        console.log(res)
       })
-    
-   
+    })
+
     Greet(name).then(updateResultText)
   }
   greet()
 
-  return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <RouterProvider router={router} />
-    </MantineProvider>
-  )
+  return <RouterProvider router={router} />
 }
 
 export default App
@@ -42,20 +31,6 @@ export default App
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <LoginScreen />,
-  },
-  {
-    path: '/',
-    element: <MainLayout/>,
-    children:[
-      {
-        path: 'dashboard',
-        element: <DashboardScreen />,
-      },
-      {
-        path: 'game',
-        element: <MainScreen />,
-      },
-    ]
+    element: <DashboardScreen />,
   },
 ])
