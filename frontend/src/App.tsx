@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Greet, NewTestAA, NiceOne } from '../wailsjs/go/main/App'
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import DashboardScreen from './screens/DashboardScreen/DashboardScreen'
+import { MantineProvider, Text } from '@mantine/core'
+import MainLayout from './layout/MainLayout'
+import { theme } from './theme/theme'
 
 function App() {
   const [resultText, setResultText] = useState(
@@ -23,7 +26,11 @@ function App() {
   }
   greet()
 
-  return <RouterProvider router={router} />
+  return (
+    <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
+      <RouterProvider router={router} />
+    </MantineProvider>
+  )
 }
 
 export default App
@@ -31,6 +38,12 @@ export default App
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <DashboardScreen />,
+    element: <MainLayout />,
+    children: [
+      {
+        path: '',
+        element: <DashboardScreen />,
+      },
+    ],
   },
 ])
