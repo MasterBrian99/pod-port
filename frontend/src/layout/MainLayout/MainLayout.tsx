@@ -1,4 +1,4 @@
-import { AppShell, Code, Group, Header, Navbar, ScrollArea } from '@mantine/core'
+import { AppShell, Code, Group, Text, Navbar, ScrollArea ,Box,Button} from '@mantine/core'
 import React from 'react'
 import { Outlet } from 'react-router-dom'
 import { LinksGroup } from '../../components/Navigation/LinksGroup'
@@ -51,25 +51,39 @@ const mockdata = [
 const MainLayout = () => {
     const links = mockdata.map((item) => <LinksGroup {...item} key={item.label} />);
     return (
-        <AppShell padding="md"
+        <AppShell 
+        padding={0}
             navbar={<Navbar  p="xs" width={{ base: 300 }}>
-               
+                 <Navbar.Section py="xs">
+                 <Code sx={{ fontWeight: 700 }}>v0.0.1</Code>
+                </Navbar.Section>
                 <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
                     <div >{links}</div>
                 </Navbar.Section>
 
             
             </Navbar>}
-            header={<Header height={60} p="xs"> <Navbar.Section >
-            <Group position="apart">
-                <Code sx={{ fontWeight: 700 }}>v0.0.1</Code>
-            </Group>
-        </Navbar.Section></Header>}
+        //     header={<Header height={60} p="xs"> <Navbar.Section >
+        //     <Group position="apart">
+        //         <Code sx={{ fontWeight: 700 }}>v0.0.1</Code>
+        //     </Group>
+        // </Navbar.Section></Header>}
             styles={(theme) => ({
                 main: { backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[8] : theme.colors.gray[0] },
             })}>
 
-            <Outlet /></AppShell>
+            <Group position="apart" px={10}  sx={{
+          backgroundColor: '#eee',
+          height:60
+
+      }}>
+                 <Text>Hello</Text>
+
+      <Button variant="outline">3</Button>
+    </Group  >
+
+    <Outlet />
+            </AppShell>
     )
 }
 

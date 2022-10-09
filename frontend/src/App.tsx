@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
 import HomeScreen from './screens/HomeScreen/HomeScreen'
 import MainScreen from './screens/MainScreen/MainScreen'
 import MainLayout from './layout/MainLayout/MainLayout'
+import { theme } from './theme/theme'
 
 function App() {
   const [resultText, setResultText] = useState(
@@ -30,7 +31,7 @@ function App() {
   greet()
 
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
+    <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
       <RouterProvider router={router} />
     </MantineProvider>
   )
