@@ -1,49 +1,25 @@
-import { useEffect, useState } from 'react'
-import './App.css'
-import { Greet,NewTestAA, NiceOne } from '../wailsjs/go/main/App'
-import { MantineProvider, Text } from '@mantine/core'
-import { createBrowserRouter, RouterProvider, Route } from 'react-router-dom'
-import HomeScreen from './screens/HomeScreen/HomeScreen'
-import MainScreen from './screens/MainScreen/MainScreen'
-import MainLayout from './layout/MainLayout/MainLayout'
-import { theme } from './theme/theme'
+import { MantineProvider } from '@mantine/core';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomeScreen from './screens/HomeScreen/HomeScreen';
+import MainScreen from './screens/MainScreen/MainScreen';
+import MainLayout from './layout/MainLayout/MainLayout';
+import { theme } from './theme/theme';
 
 function App() {
-  const [resultText, setResultText] = useState(
-    'Please enter your name below 👇'
-  )
-  const [name, setName] = useState('')
-  const updateName = (e: any) => setName(e.target.value)
-  const updateResultText = (result: string) => setResultText(result)
-
-  function greet() {
-    console.log('Calling');
-      NiceOne().then(res=>{
-        NewTestAA("").then(res=>{
-          console.log(res);
-          
-        })
-      })
-    
-   
-    Greet(name).then(updateResultText)
-  }
-  greet()
-
   return (
     <MantineProvider withGlobalStyles withNormalizeCSS theme={theme}>
       <RouterProvider router={router} />
     </MantineProvider>
-  )
+  );
 }
 
-export default App
+export default App;
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
-    children:[
+    children: [
       {
         path: '',
         element: <HomeScreen />,
@@ -52,6 +28,6 @@ const router = createBrowserRouter([
         path: 'game',
         element: <MainScreen />,
       },
-    ]
+    ],
   },
-])
+]);

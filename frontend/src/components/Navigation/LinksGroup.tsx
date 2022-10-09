@@ -55,7 +55,7 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
   const ChevronIcon = theme.dir === 'ltr' ? IconChevronRight : IconChevronLeft;
   const items = (hasLinks ? links : []).map((link) => (
     <Text<'a'>
-      component="a"
+      component='a'
       className={classes.link}
       href={link.link}
       key={link.label}
@@ -68,12 +68,12 @@ export function LinksGroup({ icon: Icon, label, initiallyOpened, links }: LinksG
   return (
     <>
       <UnstyledButton onClick={() => setOpened((o) => !o)} className={classes.control}>
-        <Group position="apart" spacing={0}>
+        <Group position='apart' spacing={0}>
           <Box sx={{ display: 'flex', alignItems: 'center' }}>
-            <ThemeIcon variant="light" size={30}>
+            <ThemeIcon variant='light' size={30}>
               <Icon size={18} />
             </ThemeIcon>
-            <Box ml="md">{label}</Box>
+            <Box ml='md'>{label}</Box>
           </Box>
           {hasLinks && (
             <ChevronIcon
